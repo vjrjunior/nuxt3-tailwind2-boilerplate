@@ -1,4 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Nuxt3 + Tailwind2 Boilerplate
+
+## From Nuxt README => Nuxt 3 Minimal Starter
 
 We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
