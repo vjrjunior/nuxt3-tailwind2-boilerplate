@@ -10,6 +10,19 @@
     <div class="w-full flex flex-col  items-center justify-center mt-12">
       <h1 class="text-gray-200 text-2xl mb-2" v-for="type_measure in type_measures" :key="type_measure.id">{{ type_measure.title }}</h1>
     </div>
+
+    {{ isWindyLoaded }}
+
+    <div class="w-full flex justify-center">
+      <div class="w-full max-w-1/3" style="max-width: 50%;">
+        <div
+            data-windywidget="forecast"
+            data-spotid="582461"
+            data-appid="d6cfbfbf0761a09e295f692a5bd3b869"
+            data-spots="true">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +38,8 @@
     }
   `
 
+  let isWindyLoaded = ref(false)
+
   let type_measures = ref([])
   
   const { data } = await $fetch('https://explorer-api.localenergycodes.com/api/graphql', {
@@ -35,7 +50,20 @@
   type_measures.value = data.type_measures
 
   useMeta({
-    title: type_measures.value[0].title
+    title: type_measures.value[0].title,
+
+    script: [
+      {
+        hid: 'windy',
+        src: 'https://windy.app/widget/windy_forecast_async.js',
+        defer: true,
+        callback: () => { 
+
+          alert('loaded')
+          isWindyLoaded.value = true
+         } 
+      }
+    ]
   })
 
 
