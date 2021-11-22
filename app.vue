@@ -7,8 +7,8 @@
     </div>
   
 
-    <div class="w-full flex flex-col  items-center justify-center mt-6">
-        <h1 v-for="type_measure in data.type_measures" :key="type_measure.id">{{ type_measure.title }}</h1>
+    <div class="w-full flex flex-col  items-center justify-center mt-12">
+      <h1 class="text-gray-200 text-2xl mb-2" v-for="type_measure in type_measures" :key="type_measure.id">{{ type_measure.title }}</h1>
     </div>
   </div>
 </template>
@@ -24,13 +24,19 @@
       }
     }
   `
-  const { data } = await useAsyncData('count', () => $fetch(
-    'https://explorer-api.localenergycodes.com/api/graphql',
-    {
-      method: 'POST',
-      body: { query }
-    }
-  ))
+
+  let type_measures = ref([])
+  
+  const { data } = await $fetch('https://explorer-api.localenergycodes.com/api/graphql', {
+    method: 'POST',
+    body: { query }
+  })
+
+  type_measures.value = data.type_measures
+
+  useMeta({
+    title: type_measures.value[0].title
+  })
 
 
 </script>
