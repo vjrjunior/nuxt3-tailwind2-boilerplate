@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build && cp ./.output ./docs",
+    "generate": "nuxi generate",
     "start": "node .output/server/index.mjs",
     "tailwind": "tailwind-config-viewer --open --port 3001"
   },
