@@ -1,0 +1,33 @@
+@use 'sass:math';
+
+$breakpoints: (
+  xs: 480px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1440px,
+  xxl: 1800px,
+);
+
+@function px-to-em($px) {
+  @return math.div($px, 16px) * 1em;
+}
+
+@mixin mq($size, $type: min, $orientation: width) {
+  @if map-has-key($breakpoints, $size) {
+    $size: map-get($breakpoints, $size);
+  }
+  @if $type == 'max' {
+    $size: $size - 1px;
+  }
+  @if $orientation == 'width' {
+    @media only screen and (#{$type}-width: px-to-em($size)) {
+      @content;
+    }
+  }
+  @if $orientation == 'height' {
+    @media only screen and (#{$type}-height: px-to-em($size)) {
+      @content;
+    }
+  }
+}

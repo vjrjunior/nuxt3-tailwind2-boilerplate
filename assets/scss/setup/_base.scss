@@ -1,0 +1,27 @@
+*::selection {
+  @apply bg-slate-800 text-white;
+}
+
+html {
+  -webkit-overflow-scrolling: touch;;
+}
+
+body {
+  @apply font-body text-blue;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -ms-text-size-adjust: 100%;
+}
+
+html,
+body,
+#__nuxt,
+#__layout,
+#__layout > div {
+  min-height: 100vh;
+}
+
+#__layout > div {
+  display: flex;
+  flex-direction: column;
+}

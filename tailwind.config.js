@@ -1,14 +1,19 @@
+const { pxToEm, fontFallbacks } = require('./tailwindUtilities.js')
+
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    container: {
+      center: true,
+    },
   },
   plugins: [],
   purge: [
-    './*.vue',
+    "./components/**/*.{vue,js}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+    "./app.vue",
   ]
 }
